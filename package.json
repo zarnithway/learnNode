@@ -1,8 +1,8 @@
 {
   "name": "learnnode",
   "version": "1.0.0",
-  "type" : "module",
-  "description": "",
+  "type": "module",
+  "description": "A learning project built with Node.js, Express, and SQLite. It includes a REST API for managing todos.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,5 +20,13 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zarnithway/learnNode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zarnithway/learnNode/issues"
+  },
+  "homepage": "https://github.com/zarnithway/learnNode#readme"
 }
