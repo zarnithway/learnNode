@@ -1,0 +1,71 @@
+မေးခွန်း ၅၀ (သင်ခန်းစာ ၁ မှ ၆)
+
+အဖြေကို နံပါတ်တပ်ပြီး ဒီမှာ ပြန်ရေးပါ (မသိတာကို "မသိ" လို့ရေးလို့ရပါတယ်)။ တစ်ခါတည်း မဖြေနိုင်ရင် အပိုင်းလိုက် ခွဲဖြေပါ၊ ပြီးရင် အမှတ်ပေးပြီး မှားတာတွေကို ရှင်းပြပါမယ်။ အဖြေတွေကို အခုမပြပါဘူး၊ ကိုယ်တိုင်စဉ်းစားမှ သင်ယူရတာမို့ပါ။
+
+အပိုင်း ၁: Node.js နဲ့ V8
+Node.js ဆိုတာ ဘာလဲ။ Framework လား၊ language လား၊ runtime လား။
+Node.js ကို အစိတ်အပိုင်း ၃ ခုနဲ့ ခွဲပြောပါ (V8 ပါရမယ်)။
+V8 က JavaScript ကို ဘယ်လိုအဆင့်တွေနဲ့ run လဲ။ Ignition နဲ့ TurboFan ရဲ့ ကွာခြားချက်က ဘာလဲ။
+JIT compilation ဆိုတာ ဘာလဲ။
+Deoptimization ဆိုတာ ဘာလဲ၊ ဘယ်အခါ ဖြစ်လဲ။
+Browser မှာရှိပြီး Node မှာ မရှိတဲ့ object ၂ ခုနဲ့ Node မှာရှိပြီး browser မှာ မရှိတဲ့ object ၂ ခု ပြောပါ။
+V8 မှာ setTimeout ပါလား။ မပါရင် ဘယ်သူက ပေးလဲ။
+အပိုင်း ၂: Event loop
+JavaScript က single-threaded ဖြစ်ပေမယ့် request ထောင်ချီကို ဘယ်လို ကိုင်နိုင်လဲ။
+Call stack, callback queue, event loop ရဲ့ တာဝန်ကို တစ်ခုချင်း ပြောပါ။
+အောက်ပါ code ရဲ့ output အစီအစဉ်ကို ခန့်မှန်းပါ (ကျန်နေတဲ့ လေ့ကျင့်ခန်းပါ)။
+js
+console.log("A");
+setTimeout(() => console.log("B"), 0);
+Promise.resolve().then(() => console.log("C"));
+process.nextTick(() => console.log("D"));
+(async () => {
+  console.log("E");
+  await null;
+  console.log("F");
+})();
+console.log("G");
+process.nextTick နဲ့ Promise .then ဘယ်သူ အရင်ပြေးလဲ။
+I/O callback ဆိုတာ ဘာလဲ။ Event loop ရဲ့ ဘယ် phase မှာ run လဲ။
+Main module မှာ setTimeout(fn, 0) နဲ့ setImmediate(fn) ဘယ်သူ အရင်ပြေးလဲ။ ဘာကြောင့် အာမခံလို့ မရလဲ။
+I/O callback ထဲမှာ ဒီနှစ်ခုကို ခေါ်ရင် ဘယ်သူ အမြဲ အရင်ပြေးလဲ၊ ဘာကြောင့်လဲ။
+Event loop ကို "ပိတ်ဆို့တယ်" ဆိုတာ ဘာကို ဆိုလိုလဲ။ ဥပမာ ၂ ခု ပေးပါ။
+Server ထဲမှာ fs.readFileSync ကို ဘာကြောင့် မသုံးသင့်လဲ။ ဘယ်အခါမှာ သုံးလို့ရလဲ။
+libuv thread pool ဆိုတာ ဘာလဲ။ ဘယ်အလုပ်တွေက ဒီ pool ကို သုံးလဲ။
+အပိုင်း ၃: File, Module, npm
+fs.readFile ကို const data = fs.readFile(...) လို့ရေးရင် data က ဘာကြောင့် undefined ဖြစ်လဲ။
+readFile (callback) မှာ console.log("done") ကို callback အပြင်မှာထားရင် done က content မတိုင်ခင် ဘာကြောင့် ပေါ်လဲ။
+require("./math") နဲ့ require("lodash") မှာ ./ ရှိ/မရှိ ဘာကွာလဲ။
+module.exports = db နဲ့ module.exports = { db } ဘာကွာလဲ၊ import ပုံစံက ဘယ်လိုကွဲလဲ။
+CommonJS နဲ့ ES Modules ကွာခြားချက် ၃ ခု ပြောပါ။
+__dirname နဲ့ process.cwd() ဘာကွာလဲ။ Database file path ရေးတဲ့အခါ ဘာကြောင့် __dirname ကို ရွေးလဲ။
+path.join ကို ဘာကြောင့် + နဲ့ string ပေါင်းတာထက် ပိုကောင်းလဲ။
+package.json, package-lock.json, node_modules/ တစ်ခုချင်း ဘာလဲ။ ဘယ်ဟာကို Git ထဲ မတင်ရလဲ။
+npm install -D nodemon မှာ -D ရဲ့ အဓိပ္ပာယ်က ဘာလဲ။
+chalk ကို version 4 နဲ့ install လုပ်ခိုင်းတာ ဘာကြောင့်လဲ။
+အပိုင်း ၄: HTTP နဲ့ Express
+HTTP method ၄ ခုနဲ့ ၎င်းတို့ရဲ့ အသုံးကို ပြောပါ။
+Status code 200, 201, 204, 400, 404, 500 တစ်ခုချင်း ဘာကိုဆိုလိုလဲ။
+Express handler ရဲ့ parameter အစီအစဉ်က ဘာလဲ။ (res, req) လို့ ပြောင်းရေးရင် ဘာဖြစ်လဲ။
+res.status(404) နဲ့ res.statusCode(404) ဘာကွာလဲ။ ဘယ်ဟာမှား၊ ဘာကြောင့်လဲ။
+req.params, req.query, req.body ကို URL ဥပမာနဲ့ ခွဲပြောပါ။
+req.query ထဲက တန်ဖိုးတွေရဲ့ type က ဘာလဲ။ ဒါကြောင့် ?done=true ကို ဘယ်လိုကိုင်ရလဲ။
+express.json() မထည့်ရင် req.body က ဘာဖြစ်လဲ။
+Middleware ဆိုတာ ဘာလဲ။ next() မခေါ်ရင် ဘာဖြစ်လဲ။
+Middleware ကို route တွေရဲ့ အောက်မှာ ထားရင် ဘာဖြစ်လဲ။
+return res.status(404).json(...) မှာ return မထည့်ရင် ဘာပြဿနာ ဖြစ်နိုင်လဲ။
+if (!is_done) နဲ့ boolean တန်ဖိုးစစ်ရင် ဘာမှားလဲ။ ဘယ်လိုစစ်ရမလဲ။
+အပိုင်း ၅: Project structure နဲ့ Error handling
+Routes, controllers, validators, store ရဲ့ တာဝန်ကို တစ်ခုချင်း ပြောပါ။
+Store file ထဲမှာ req/res ကို ဘာကြောင့် မသုံးရလဲ။
+AppError class ကို ဘာကြောင့် ဖန်တီးလဲ။
+Express error handler မှာ parameter ဘယ်နှစ်ခု ရှိရမလဲ၊ ဘာကြောင့်လဲ။ Middleware အစီအစဉ်မှာ ဘယ်နေရာထားလဲ။
+500 error ကို client ဆီ err.message အပြည့်အစုံ မပို့သင့်တာ ဘာကြောင့်လဲ။
+.env file ကို ဘာကြောင့် Git မတင်ရလဲ။
+app.js နဲ့ server.js ကို ခွဲထားတာ ဘာအကျိုးရှိလဲ။
+အပိုင်း ၆: Database
+await တစ်ခုက event loop ကို ပိတ်ဆို့လား။ ဘာကြောင့်လဲ။
+await မေ့ပြီး res.json(store.findAll()) လို့ရေးရင် ဘာထွက်လဲ။
+အလွတ်ကင်းလွတ်တဲ့ query ၂ ခုကို await တစ်ခုချင်းစီ ခေါ်တာနဲ့ Promise.all သုံးတာ ဘာကွာလဲ။
+SQL Injection ဆိုတာ ဘာလဲ။ ? placeholder က ဘယ်လို ကာကွယ်လဲ။
+new Database("todos.db") နဲ့ new Database(path.join(__dirname, "../../todos.db")) ဘာကွာလဲ။ Server restart လုပ်ရင် todo တွေ မပျောက်တာ ဘာကြောင့်လဲ။
